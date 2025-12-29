@@ -1,5 +1,6 @@
 import type { ReactNode } from 'react'
 import { createContext, useContext, useState } from 'react'
+import { deleteToken } from '../services'
 
 type AppContextProviderProps = {
   children: ReactNode
@@ -9,6 +10,8 @@ type AppContextValue = {
   isLogged: boolean
   logIn: () => void
   signOut: () => void
+  userEmail: string
+  setEmail: (email: string) => void
 }
 
 const AppContext = createContext<AppContextValue | undefined>(undefined)
@@ -23,6 +26,7 @@ export function useAppContext(): AppContextValue {
 
 export function AppContextProvider({ children }: AppContextProviderProps) {
   const [isLogged, setIsLogged] = useState(false)
+  const [userEmail, setUserEmail] = useState('')
 
   const logIn = () => {
     setIsLogged(true)
@@ -30,9 +34,17 @@ export function AppContextProvider({ children }: AppContextProviderProps) {
 
   const signOut = () => {
     setIsLogged(false)
+    deleteToken()
   }
+
+  const setEmail = (email: string) => {
+    setUserEmail(email)
+  }
+
   return (
-    <AppContext.Provider value={{ isLogged, logIn, signOut }}>
+    <AppContext.Provider
+      value={{ isLogged, logIn, signOut, userEmail, setEmail }}
+    >
       {children}
     </AppContext.Provider>
   )

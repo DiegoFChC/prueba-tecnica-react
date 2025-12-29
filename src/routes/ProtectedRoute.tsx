@@ -1,13 +1,8 @@
 import { deleteToken, getToken } from '../services'
 import { useAppContext } from '../context/AppContext'
-import { Navigate } from 'react-router-dom'
-import type { ReactNode } from 'react'
+import { Navigate, Outlet } from 'react-router-dom'
 
-type ProtectedRouteProps = {
-  children: ReactNode
-}
-
-export function ProtectedRoute({ children }: ProtectedRouteProps) {
+export function ProtectedRoute() {
   const token = getToken()
   const { isLogged } = useAppContext()
 
@@ -16,5 +11,5 @@ export function ProtectedRoute({ children }: ProtectedRouteProps) {
     return <Navigate to='/' />
   }
 
-  return children
+  return <Outlet />
 }

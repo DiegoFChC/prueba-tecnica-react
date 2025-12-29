@@ -8,14 +8,15 @@ type useAuthProps = {
 }
 
 export function useAuth() {
-  const { logIn } = useAppContext()
+  const { logIn, setEmail } = useAppContext()
   const navigate = useNavigate()
   const signIn = async ({ email, password }: useAuthProps) => {
     try {
       const token = await loginAPI({ email, password })
       saveToken(token)
-      navigate('/dashboard')
       logIn()
+      setEmail(email)
+      navigate('/actions')
     } catch {
       console.log('error')
     }

@@ -1,0 +1,13 @@
+.myButton {
+  height: 40px;
+  font-weight: 500;
+  font-size: 16px;
+  color: #1E1B4D;
+  background: transparent;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  cursor: pointer;
+}

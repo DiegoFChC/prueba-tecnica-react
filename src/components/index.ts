@@ -1,1 +1,5 @@
+export { TopBar } from './TopBar/TopBar'
 export { FormInput } from './FormInput/FormInput'
+export { Sidebar } from './Sidebar/Sidebar'
+export { ActionIcons } from './Icons/ActionIcon'
+export { LogOutIcon } from './Icons/LogOutIcon'
