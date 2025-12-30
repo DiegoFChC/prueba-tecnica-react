@@ -19,7 +19,7 @@ Herramientas y librerías:
   * `description`: descripción de la nueva acción
   * `color`: color de la nueva acción.
 > Por defecto se envía el estado en 1 y una imagen preseleccionada.
-* Loading y erres: Manejo de estados de carga (spinner) y errores por medio de toast.
+* Loading y errors: Manejo de estados de carga (spinner) y errores por medio de toast.
 * Redirección por falta de inicio de Sesión
 
 ## Instalación y configuración
@@ -44,7 +44,7 @@ npm install
 Crea un archivo `.env` en la carpeta raíz con los siguientes valores:
 
 ```bash
-VITE_API_URL_LOGIN=<dominio_para_loguin>
+VITE_API_URL_LOGIN=<dominio_para_login>
 VITE_API_URL_LIST_CREATE=<dominio_para_list_y_create>
 ```
 
