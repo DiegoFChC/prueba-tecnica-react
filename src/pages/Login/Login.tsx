@@ -1,7 +1,9 @@
 import { type JSX } from 'react'
 import { Button, FormInput } from '../../components'
 import { useForm } from 'react-hook-form'
+import { zodResolver } from '@hookform/resolvers/zod'
 import { useAuth } from '../../hooks/useAuth'
+import { loginSchema } from '../../schemas/loginSchema'
 import './Login.css'
 
 export function Login(): JSX.Element {
@@ -12,7 +14,12 @@ export function Login(): JSX.Element {
     formState: { errors, isValid },
     trigger,
   } = useForm({
-    mode: 'onChange'
+    resolver: zodResolver(loginSchema),
+    mode: 'onChange',
+    defaultValues: {
+      email: '',
+      password: ''
+    }
   })
 
   const onSubmit = handleSubmit((data) => {
@@ -32,10 +39,11 @@ export function Login(): JSX.Element {
               type='text'
               label='Correo Electrónico'
               placeholder='Ingresar correo'
+              error={errors.email?.message}
               register={register('email', {
                 required: true,
                 onChange: () => trigger('email'),
-                onBlur: () => trigger('email')
+                onBlur: () => trigger('email'),
               })}
             />
             <FormInput
@@ -43,10 +51,11 @@ export function Login(): JSX.Element {
               type='password'
               label='Contraseña'
               placeholder='Ingresa tu contraseña'
+              error={errors.password?.message}
               register={register('password', {
                 required: true,
                 onChange: () => trigger('password'),
-                onBlur: () => trigger('email')
+                onBlur: () => trigger('email'),
               })}
             />
             <a href='#'>Recuperar contraseña</a>

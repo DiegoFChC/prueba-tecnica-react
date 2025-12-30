@@ -1,20 +1,31 @@
 import { Button } from '../../components/Button/Button'
+import { useAppContext } from '../../context/AppContext'
 import { useAction } from '../../hooks/useActions'
 import { parseDate } from '../../utils/parseDate'
+import { CreateActionForm } from '../CreateActionForm/CreateActionForm'
 import './Actions.css'
 
 export function Actions() {
+  const { openModal } = useAppContext()
   const {
     data,
     filters: { pageNumber, pageSize },
     updateFilters,
+    createNewAction
   } = useAction()
 
   return (
     <main className='actions'>
       <h1>Acciones</h1>
       <div className='newAction'>
-        <Button>Crear tipo de acción</Button>
+        <Button
+          type='button'
+          handleClick={() => {
+            openModal(<CreateActionForm handleCreateAction={createNewAction} />)
+          }}
+        >
+          Crear tipo de acción
+        </Button>
       </div>
       <div className='tableContainer'>
         <table>

@@ -21,6 +21,8 @@
 
 .myButton.outlined {
   border: 1px solid #1E1B4D;
+  background: transparent;
+  color: #1E1B4D;
 }
 
 .myButton:disabled {

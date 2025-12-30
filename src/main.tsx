@@ -1,7 +1,7 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import { AppContextProvider } from './context/AppContext.tsx'
-import { Loader } from './components/index.ts'
+import { Loader, ModalWindow } from './components/index.ts'
 import { ToastContainer } from 'react-toastify'
 import App from './App.tsx'
 import './index.css'
@@ -12,6 +12,7 @@ createRoot(document.getElementById('root')!).render(
       <App />
       <Loader />
       <ToastContainer />
+      <ModalWindow />
     </AppContextProvider>
   </StrictMode>
 )

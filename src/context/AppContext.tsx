@@ -15,7 +15,10 @@ type AppContextValue = {
   loading: boolean
   stopLoading: () => void
   startLoading: () => void
-
+  modalContent: ReactNode
+  openModal: (content: ReactNode) => void
+  closeModal: () => void
+  showModal: boolean
 }
 
 const AppContext = createContext<AppContextValue | undefined>(undefined)
@@ -32,6 +35,8 @@ export function AppContextProvider({ children }: AppContextProviderProps) {
   const [isLogged, setIsLogged] = useState(false)
   const [userEmail, setUserEmail] = useState('')
   const [loading, setLoading] = useState(false)
+  const [modalContent, setModalContent] = useState<ReactNode>(null)
+  const [showModal, setShowModal] = useState(false)
 
   const logIn = () => {
     setIsLogged(true)
@@ -54,6 +59,16 @@ export function AppContextProvider({ children }: AppContextProviderProps) {
     setLoading(true)
   }
 
+  const openModal = (content: ReactNode) => {
+    setShowModal(true)
+    setModalContent(content)
+  }
+
+  const closeModal = () => {
+    setShowModal(false)
+    setModalContent(null)
+  }
+
   return (
     <AppContext.Provider
       value={{
@@ -65,6 +80,10 @@ export function AppContextProvider({ children }: AppContextProviderProps) {
         loading,
         stopLoading,
         startLoading,
+        modalContent,
+        openModal,
+        closeModal,
+        showModal
       }}
     >
       {children}

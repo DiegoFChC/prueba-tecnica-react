@@ -1,8 +1,9 @@
-import type { JSX, InputHTMLAttributes } from 'react'
-import './FormInput.css'
+import type {JSX, TextareaHTMLAttributes } from 'react'
 import type { UseFormRegisterReturn } from 'react-hook-form'
+import './FormTextArea.css'
 
-interface FormInputProps extends InputHTMLAttributes<HTMLInputElement> {
+interface FormTextAreaProps
+  extends TextareaHTMLAttributes<HTMLTextAreaElement> {
   label: string
   identifier: string
   register: UseFormRegisterReturn<string>
@@ -10,8 +11,7 @@ interface FormInputProps extends InputHTMLAttributes<HTMLInputElement> {
   error?: string
 }
 
-export function FormInput({
-  type,
+export function FormTextArea({
   identifier,
   label,
   placeholder,
@@ -19,15 +19,18 @@ export function FormInput({
   register,
   error,
   ...rest
-}: FormInputProps): JSX.Element {
+}: FormTextAreaProps): JSX.Element {
   return (
-    <div className='FormInput'>
-      <label htmlFor={identifier}>{label}{isRequired && '*'}</label>
-      <input
-        type={type}
+    <div className='formTextArea'>
+      <label htmlFor={identifier}>
+        {label}
+        {isRequired && '*'}
+      </label>
+      <textarea
         id={identifier}
         placeholder={placeholder}
         required={isRequired}
+        maxLength={201}
         {...register}
         {...rest}
       />
