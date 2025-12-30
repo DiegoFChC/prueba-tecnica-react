@@ -1,0 +1,28 @@
+.FormInput {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.FormInput label {
+  font-weight: 500;
+  font-size: 14px;
+}
+
+.FormInput input {
+  padding: 0 20px;
+  height: 40px;
+  border: 1px solid #8F8D93;
+  border-radius: 5px;
+}
+
+.FormInput input::placeholder {
+  font-size: 16px;
+  font-weight: 400;
+}
+
+.error {
+  color: red;
+  font-size: 12px;
+}

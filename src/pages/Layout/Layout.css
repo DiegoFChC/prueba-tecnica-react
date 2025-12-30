@@ -1,0 +1,12 @@
+.layout {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.layout .container {
+  width: 100dvw;
+  display: flex;
+}

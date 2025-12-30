@@ -1,0 +1,22 @@
+.sidebarLink {
+  height: 52px;
+  padding: 16px;
+  display: flex;
+  align-items: center;
+  gap:  8px;
+  font-weight: 400;
+  font-size: 14px;
+  text-decoration: none;
+  color: #28272A;
+  transition: all .1s ease;
+}
+
+.sidebarLink:hover {
+  background: #01bbbb1f;
+  border-left: 4px solid #01BABB;
+}
+
+.sidebarLink.active {
+  background: #01bbbb1f;
+  border-left: 4px solid #01BABB;
+}

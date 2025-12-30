@@ -1,0 +1,25 @@
+.topbar {
+  width: 100%;
+  height: 65px;
+  padding: 16px 36px;
+  background: #1E1B4D;
+  display: flex;
+  justify-content: space-between;
+}
+
+.topbar img {
+  width: 100px;
+  object-fit: fill;
+  filter: brightness(0) invert(1);
+}
+
+.topbar span {
+  width: 32px;
+  height: 32px;
+  background: #FED639;
+  color: #1E1B4D;
+  display: grid;
+  place-content: center;
+  font-weight: bold;
+  border-radius: 50%;
+}
