@@ -54,10 +54,7 @@
   text-underline-offset: 3px;
 }
 
-.login input[type='submit'] {
+.login button[type='submit'] {
   width: 260px;
   height: 40px;
-  background: #1E1B4D;
-  color: white;
-  cursor: pointer;
 }

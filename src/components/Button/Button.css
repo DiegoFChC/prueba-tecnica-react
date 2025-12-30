@@ -1,13 +1,28 @@
 .myButton {
+  padding: 0 15px;
   height: 40px;
   font-weight: 500;
   font-size: 16px;
   color: #1E1B4D;
   background: transparent;
   border: none;
+  border-radius: 5px;
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 8px;
   cursor: pointer;
+}
+
+.myButton.fill {
+  background: #1E1B4D;
+  color: white;
+}
+
+.myButton.outlined {
+  border: 1px solid #1E1B4D;
+}
+
+.myButton:disabled {
+  background: gray;
 }

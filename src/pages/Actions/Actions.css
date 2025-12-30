@@ -1,3 +1,132 @@
-.dashboard {
+.actions {
+  width: 100%;
+  max-height: calc(100dvh - 65px);
   padding: 40px 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  overflow-x: scroll;
+}
+
+.actions .newAction {
+  width: 100%;
+  display: flex;
+  justify-content: right;
+}
+
+.actions .color {
+  display: inline-block;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+}
+
+.actions .status {
+  display: inline-block;
+  width: 80px;
+  padding: 4px 20px;
+  border-radius: 5px;
+  font-weight: 500;
+  font-size: 12px;
+}
+
+.actions .status.green {
+  border: 1px solid #0B8A00;
+  color: #0B8A00;
+  background: #0b8a0031;
+}
+
+.actions .status.red {
+  border: 1px solid #b90202;
+  color: #b90202;
+  background: #9c000023;
+}
+
+.actions .tableContainer {
+  width: 100%;
+  position: relative;
+  overflow: scroll;
+}
+
+.actions img {
+  max-width: 30px;
+}
+
+.actions .pagination {
+  width: 100%;
+  padding: 15px 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 40px;
+  border: 1px solid #E4E4E5;
+  position: sticky;
+  bottom: 0;
+}
+
+.actions .navigation {
+  display: flex;
+  gap: 15px;
+}
+
+.actions .navigation button {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.actions .selectSize {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.actions .selectSize select {
+  padding: 5px;
+  border: 1px solid #E4E4E5;
+  border-radius: 5px;
+}
+
+table {
+  width: 100%;
+  border: 1px solid #E4E4E5;
+  border-collapse: collapse;
+  font-size: 14px;
+  font-weight: 400;
+}
+
+thead {
+  background: #f3f3f3;
+  font-weight: 700;
+  font-size: 14px;
+  border: 1px solid #E4E4E5;
+  position: sticky;
+  top: 0;
+}
+
+thead td {
+  text-align: center;
+  border: 1px solid #E4E4E5;
+  position: sticky;
+  top: 0;
+}
+
+td {
+  padding: 15px 10px;
+}
+
+td.center {
+  min-width: 200px;
+  text-align: center;
+}
+
+tfoot {
+  background: #fafafa;
+  border: 1px solid #E4E4E5;
+  position: sticky;
+  bottom: 0;
+}
+
+tfoot td {
+  padding: 0;
 }

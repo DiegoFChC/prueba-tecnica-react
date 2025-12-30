@@ -1,5 +1,5 @@
 import { Route, Routes } from 'react-router-dom'
-import { Login, Dashboard, Layout, Home, Profile } from '../pages'
+import { Login, Actions, Layout, Home, Profile } from '../pages'
 import { ProtectedRoute } from './ProtectedRoute'
 import type { ReactElement } from 'react'
 
@@ -12,7 +12,7 @@ export function AppRouter(): ReactElement {
           path='/actions'
           element={
             <Layout>
-              <Dashboard />
+              <Actions />
             </Layout>
           }
         />

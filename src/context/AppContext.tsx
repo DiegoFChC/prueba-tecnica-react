@@ -12,6 +12,10 @@ type AppContextValue = {
   signOut: () => void
   userEmail: string
   setEmail: (email: string) => void
+  loading: boolean
+  stopLoading: () => void
+  startLoading: () => void
+
 }
 
 const AppContext = createContext<AppContextValue | undefined>(undefined)
@@ -27,6 +31,7 @@ export function useAppContext(): AppContextValue {
 export function AppContextProvider({ children }: AppContextProviderProps) {
   const [isLogged, setIsLogged] = useState(false)
   const [userEmail, setUserEmail] = useState('')
+  const [loading, setLoading] = useState(false)
 
   const logIn = () => {
     setIsLogged(true)
@@ -41,9 +46,26 @@ export function AppContextProvider({ children }: AppContextProviderProps) {
     setUserEmail(email)
   }
 
+  const stopLoading = () => {
+    setLoading(false)
+  }
+
+  const startLoading = () => {
+    setLoading(true)
+  }
+
   return (
     <AppContext.Provider
-      value={{ isLogged, logIn, signOut, userEmail, setEmail }}
+      value={{
+        isLogged,
+        logIn,
+        signOut,
+        userEmail,
+        setEmail,
+        loading,
+        stopLoading,
+        startLoading,
+      }}
     >
       {children}
     </AppContext.Provider>

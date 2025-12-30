@@ -1,5 +1,5 @@
-import type { JSX } from 'react'
-import { FormInput } from '../../components'
+import { type JSX } from 'react'
+import { Button, FormInput } from '../../components'
 import { useForm } from 'react-hook-form'
 import { useAuth } from '../../hooks/useAuth'
 import './Login.css'
@@ -9,12 +9,13 @@ export function Login(): JSX.Element {
   const {
     register,
     handleSubmit,
-    formState: { errors },
+    formState: { errors, isValid },
     trigger,
-  } = useForm({})
+  } = useForm({
+    mode: 'onChange'
+  })
 
   const onSubmit = handleSubmit((data) => {
-    console.log(data)
     const { email, password } = data
     signIn({ email, password })
   })
@@ -34,6 +35,7 @@ export function Login(): JSX.Element {
               register={register('email', {
                 required: true,
                 onChange: () => trigger('email'),
+                onBlur: () => trigger('email')
               })}
             />
             <FormInput
@@ -44,11 +46,14 @@ export function Login(): JSX.Element {
               register={register('password', {
                 required: true,
                 onChange: () => trigger('password'),
+                onBlur: () => trigger('email')
               })}
             />
             <a href='#'>Recuperar contraseña</a>
           </div>
-          <input type='submit' value='Ingresar' />
+          <Button type='submit' fill disabled={!isValid}>
+            Ingresar
+          </Button>
         </form>
       </div>
     </section>

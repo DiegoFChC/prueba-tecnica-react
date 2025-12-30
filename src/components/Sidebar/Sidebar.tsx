@@ -44,7 +44,7 @@ export function Sidebar(): JSX.Element {
           })}
         </ul>
       </div>
-      <Button handleClick={handleLogOut}>
+      <Button handleClick={handleLogOut} fill={false}>
         <LogOutIcon /> Cerrar Sesión
       </Button>
     </nav>
