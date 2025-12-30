@@ -1,73 +1,134 @@
-# React + TypeScript + Vite
+# Prueba técnica de React
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Stack tecnológico
+Herramientas y librerías:
 
-Currently, two official plugins are available:
+* React 18 (Vite)
+* TypeScript (Tipado básico)
+* React Hook Form + Zod (Validación de formularios)
+* Context API (Gestión de estado global)
+* CSS
+* React Toastify (Notificaciones de error y éxito)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Características principales (Features)
 
-## React Compiler
+* **Autenticación:** Login con validación básica y manejo de tokens.
+* **Gestión de actions:** Listado con paginación dinámica de acciones registradas en el sistema.
+* **Creación con actions:** Formulario para crear acciones. Campos seleccionados:
+  * `name`: nombre de la nueva acción
+  * `description`: descripción de la nueva acción
+  * `color`: color de la nueva acción.
+> Por defecto se envía el estado en 1 y una imagen preseleccionada.
+* Loading y erres: Manejo de estados de carga (spinner) y errores por medio de toast.
+* Redirección por falta de inicio de Sesión
 
-The React Compiler is currently not compatible with SWC. See [this issue](https://github.com/vitejs/vite-plugin-react/issues/428) for tracking the progress.
+## Instalación y configuración
 
-## Expanding the ESLint configuration
+### Clonar el repositorio
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+git clone https://github.com/DiegoFChC/prueba-tecnica-react.git
+cd prueba-tecnica-react
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+### Instalación de dependencias
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+bun install
+// ó
+npm install
 ```
+
+### Configurar variables de entorno
+
+Crea un archivo `.env` en la carpeta raíz con los siguientes valores:
+
+```bash
+VITE_API_URL_LOGIN=<dominio_para_loguin>
+VITE_API_URL_LIST_CREATE=<dominio_para_list_y_create>
+```
+
+> **Importante:** No coloques query params en estas API_URL, sólo URL específica. Internamente al app hace el llamado a admin-add y admin-list.
+
+### Ejecuta la aplicación
+
+```bash
+bun run dev
+// ó
+npm run dev
+```
+
+## Estructura del proyecto
+
+```bash
+src/
+├── 📁 components/        # Componentes
+│
+├── 📁 context/           # Estado global de la aplicación
+│   └── 📄 AppContext.tsx # Manejo de Loaders, Modales y loguin
+│
+├── 📁 hooks/             # Lógica de negocio reutilizable (Custom Hooks)
+│   ├── 📄 useAuth.ts     # Lógica de login y persistencia de token
+│   └── 📄 useAction.ts   # Lógica de fetching, paginación y creación
+│
+├── 📁 pages/             # Componentes de vista (pantallas completas)
+│   ├── 📄 Login.tsx      # Vista de acceso
+│   ├── 📄 Home.tsx       # Vista para pruebas de sidebar
+│   ├── 📄 Profiel.tsx    # Vista para pruebas de sidebar
+│   └── 📄 Actions.tsx    # Vista de listado y gestión de acciones (página principal)
+│
+├── 📁 routes/            # Configuración de navegación
+│   └── 📄 AppRoutes.tsx  # Rutas protegidas y públicas (React Router)
+│
+├── 📁 schemas/            # Validaciones de datos (Zod)
+│   ├── 📄 loginSchema.ts  # Reglas para el formulario de acceso
+│   └── 📄 actionSchema.ts # Reglas para creación de acciones
+│
+├── 📁 services/          # Llamadas directas a la API (Fetch)
+│   ├── 📄 auth.ts        # Endpoint de loguin
+│   └── 📄 actions.ts     # Endpoints de list y create de acciones
+│
+├── 📁 types/             # Definiciones de TypeScript e Interfaces
+│   └── 📄 actionsType.ts # Tipado básico de las respuestas de la API
+│
+└── 📁 utils/             # Funciones auxiliares y constantes
+    └── 📄 formatters.ts  # Formateo de fechas o manejo de archivos (Blob)
+```
+
+## Mapa de Rutas (Routing)
+La aplicación utiliza `react-router-dom` para el manejo de navegación, implementando rutas protegidas y un sistema de layouts anidados.
+
+| Ruta     | Acceso    | Componente | Descripción                                    |
+|----------|-----------|------------|------------------------------------------------|
+| /login   | Públiico  | Login      | Formulario de acceso y obtención de Token.     |
+| /home    | Protegido | Dashboard  | Página para prueba de navegación               |
+| /actions | Protegido | Actions    | Página paara listado y creación de actions     |
+| /profile | Protegido | Profile    | Página para prueba de navegación               |
+| *        | Público   | NotFound   | Captura de errores 404 para rutas inexistentes |
+
+## QA Checklist
+
+Se adjunta el archivo `QA_CHECKLIST.md` que detallan algunos casos de prueba funcionales para validar el flujo completo de la aplicación (Login, Listado, Paginación y Creación).
+
+## Decisiones técnicas
+
+* Usar Zod con React-Hook-Form para la validación independiente de formularios, evitando condicionales que harían ruido en algún componente.
+* Separar en **custom hooks** y pequeños **servicios** la lógica de negocio. Si queremos cambiar la forma en que hacermos los llamados a las APIs, ya sea con axios u React Query, basta sólo con cambiar un servicio, o actualizar el hook, y la aplicación seguirá corriendo correctamente.
+* Uso de rutas anidadas por medio de **react-router-dom** y `<Outlet />` para evitar el renderizado de rutas en casos en los que el usuario no está autorizado.
+* Usar TypeScript. Facilita el trabajo con los datos de las APIs, y en generar da mas robustes a la aplicación. Esta vez su uso fué básico, hay mucho por mejorar pero en lo poco que se usó, ayudó mucho para detección de errores y prevención de los mismos.
+
+## Supuestos
+
+* Para el listado de **acciones** se tomó el `color` como si fuera la representación de la acción. Por esto se renderiza el color y no se muestra el texto del color.
+* En el listado no era necesario agregar filtros o opciones de organizacion
+* Mostrar mensajes de error -> Se toman como notificaciones y se muestra directamente el mensaje dado por el backend.
+
+## Por mejorar
+
+* Refactorizar la página `Actions` ya que está muy cargada.
+* Implementar debounse (o AbortController) para evitar errores en los cambios de paginación rápida.
+* Simplificar el loader para que no sea global sino epecífico de cada funcionalidad.
+* Buscar una mejor forma de guardar el token del usuario y asegurar persistencia de logueo al refrescar a página. (Podría llamarce a una API de autenticación vara validar token).
+* Es necesario mejorar el tema responsive, más precisamente el la página de acciones, ya que el sidebar no se oculta.
+* Mejora se SEO. Al cambiar de página actualizar titulo y descripción.
+* Algunos errores recibidos desde el back son extraños, por lo que hay que detectarlos bien y reescribirlos para dar un buen feedback al usuario. Ej: Email válido y contraseña incorrecta en el login.

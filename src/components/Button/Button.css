@@ -28,3 +28,7 @@
 .myButton:disabled {
   background: gray;
 }
+
+.myButton:disabled {
+  cursor: default;
+}
