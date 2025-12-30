@@ -2,10 +2,7 @@ import { getToken } from './storage'
 import type { ActionsListType, Data } from '../types/actionsType'
 import { defaultImage } from '../utils/defaultImage'
 
-const API_URL: string =
-  'https://dev.api.bekindnetwork.com/api/v1/actions/admin-list'
-
-const API_URL_2: string = 'https://dev.api.bekindnetwork.com/api/v1/actions/admin-add'
+const API_URL = import.meta.env.VITE_API_URL_LIST_CREATE
 
 type filterType = {
   pageNumber: string
@@ -22,7 +19,7 @@ type action = {
 export async function listActions(filters: filterType): Promise<Data> {
   const userToken = getToken()
   const queryParams = new URLSearchParams(filters).toString()
-  const response = await fetch(`${API_URL}?${queryParams}`, {
+  const response = await fetch(`${API_URL}/admin-list?${queryParams}`, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
@@ -51,7 +48,7 @@ export async function createAction({ name, description, color }: action) {
   formData.append('status', '1')
   formData.append('icon', blob, 'default-icon.png')
 
-  const response = await fetch(API_URL_2, {
+  const response = await fetch(`${API_URL}/admin-add`, {
     method: 'POST',
     headers: {
       Authorization: `Bearer ${userToken}`,

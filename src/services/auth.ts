@@ -1,5 +1,4 @@
-const API_URL: string =
-  'https://dev.apinetbo.bekindnetwork.com/api/Authentication/Login'
+const API_URL = import.meta.env.VITE_API_URL_LOGIN
 
 type LoginProps = {
   email: string
